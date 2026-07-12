@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require('path');
+const cookieParser = require('cookie-parser');
 const { connectToMongoDB } = require("./connect");
 
 const URL = require("./models/url");
@@ -19,6 +20,7 @@ app.set('views', path.resolve("./views"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 app.get("/test", async(req,res) => {
     const allurls = await URL.find({});
